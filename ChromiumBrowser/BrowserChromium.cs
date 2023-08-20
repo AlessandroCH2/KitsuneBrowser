@@ -42,7 +42,7 @@ namespace KitsuneBrowser
             Text = "Kitsune Browser";
             Icon = Resources.kitsune;
             this.AeroPeekEnabled = false;
-            AutoUpdater.Start("https://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.Start("https://raw.githubusercontent.com/AlessandroCH2/KitsuneBrowser/master/updater.xml");
             /*  DownloadPanel p = new DownloadPanel();
            //   p.BackColor = System.Drawing.Color.Transparent;
 
@@ -130,7 +130,7 @@ namespace KitsuneBrowser
             {
 
                 // message.Msg = (int)30000;
-                openLinkNewTab("github.com");
+                openLinkNewTab("https://github.com/AlessandroCH2/KitsuneBrowser/tree/master");
             }
         }
         private HT HitTest(Message m)
