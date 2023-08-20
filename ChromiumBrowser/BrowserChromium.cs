@@ -129,7 +129,7 @@ namespace KitsuneBrowser
             if (renderer._windowsSizingBoxes._githubButtonArea.Contains(point))
             {
 
-                // message.Msg = (int)30000;
+       
                 openLinkNewTab("https://github.com/AlessandroCH2/KitsuneBrowser/tree/master");
             }
         }
