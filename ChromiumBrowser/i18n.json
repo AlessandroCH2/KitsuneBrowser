@@ -1,0 +1,41 @@
+﻿{
+
+    "en": {
+       "contextmenu_openlinknewtab": "Open link in new tab",
+       "contextmenu_copylink": "Copy link",
+       "contextmenu_savelinkas": "Save link as...",
+       "contextmenu_openimagenewtab": "Open image in new tab",
+       "contextmenu_copyimage": "Copy image",
+       "contextmenu_copyimagelink": "Copy image link",
+       "contextmenu_saveimageas": "Save image as...",
+       "contextmenu_back": "Back",
+       "contextmenu_forward": "Forward",
+       "contextmenu_reload": "Reload",
+       "contextmenu_print": "Print",
+       "contextmenu_cut": "Cut",
+       "contextmenu_copy": "Copy",
+       "contextmenu_paste": "Paste",
+       "contextmenu_pagesource": "View page source",
+       "contextmenu_devtools": "Inspect"
+      },
+
+    "it": {
+        "contextmenu_openlinknewtab": "Apri link in un altra scheda",
+        "contextmenu_copylink": "Copia link",
+        "contextmenu_savelinkas": "Salva link come...",
+        "contextmenu_openimagenewtab": "Apri immagine in un altra scheda",
+        "contextmenu_copyimage": "Copia immagine",
+        "contextmenu_copyimagelink": "Copia link immagine",
+        "contextmenu_saveimageas": "Salva immagine come...",
+        "contextmenu_back": "Indietro",
+        "contextmenu_forward": "Avanti",
+        "contextmenu_reload": "Ricarica",
+        "contextmenu_print": "Stampa",
+        "contextmenu_cut": "Taglia",
+        "contextmenu_copy": "Copia",
+        "contextmenu_paste": "Incolla",
+        "contextmenu_pagesource": "Visualizza sorgente pagina",
+        "contextmenu_devtools": "Ispeziona"
+       }
+
+}

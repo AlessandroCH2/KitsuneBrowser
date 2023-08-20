@@ -1,0 +1,51 @@
+<body>
+
+    <script>
+         var string = jsDownloader.msgBox();
+      document.write(string);
+        
+    </script>
+    <style>
+      body{
+        background-color: black;
+      }
+.checkbox {
+  appearance: none;
+  background-color: rgba(59, 64, 84, 0.568);
+  margin: 0px;
+  padding: 0px;
+  font: inherit;
+  color: #fff;
+  width: 45px;
+  height: 20px;
+  transition: background-color 0.2s,left 0.1s linear;
+  border-radius: 12px;
+ cursor:pointer;
+}
+.checkbox:checked{
+  background-color: #005db465;
+}
+
+.checkbox::before {
+ content: "";
+ display: block;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: rgba(203, 224, 255, 0.89);
+  transform: translate3d(-2px,-2px,0);
+  transition: background-color 0.2s,transform 0.1s linear;
+  border-radius: 12px;
+}
+
+.checkbox:checked::before {
+ 
+  transform: translate3d(23px,-2px,0);
+  background-color: #0084ffb7;
+}
+    </style>
+      <input type="checkbox" class="checkbox" name="checkbox-checked" checked />
+     
+       
+</body>

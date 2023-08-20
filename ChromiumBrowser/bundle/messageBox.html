@@ -1,0 +1,31 @@
+<div id='BROWSER-MESSAGE-BOX'style='background-color: rgba(59, 64, 84, 0.568);    
+border-radius: 12px;   backdrop-filter: blur(10px);   
+width: 500px; 
+height: 45px;  
+font-family: Arial, Helvetica, sans-serif;
+fill: white;
+transition: background-color 0.2s linear;
+margin-top: 10px;    color: #fff;  text-decoration: none; display: flex; align-items: center;
+    justify-content: center; position: fixed; bottom: 10px; left: calc(50% - 250px); z-index: 99;'>
+$messageBox-placeholder$
+<script id="script-MESSAGEBOX">
+     
+    var opacity = 1;
+    var timeUntilDisappear = 500;
+    function startCounterMESSAGEBOX(){
+        setInterval(function() {
+   timeUntilDisappear--;
+   if(timeUntilDisappear < 1){
+       opacity-= 0.005;
+var element = document.getElementById("BROWSER-MESSAGE-BOX");
+   element.style.opacity = ""+opacity;
+   if(opacity < 0){
+       element.remove();
+   }
+   }
+
+}, 1);
+    }
+ 
+</script>
+</div>
