@@ -42,6 +42,7 @@ namespace KitsuneBrowser
             Text = "Kitsune Browser";
             Icon = Resources.kitsune;
             this.AeroPeekEnabled = false;
+            AutoUpdater.Mandatory = true;
             AutoUpdater.Start("https://raw.githubusercontent.com/AlessandroCH2/KitsuneBrowser/master/updater.xml");
             /*  DownloadPanel p = new DownloadPanel();
            //   p.BackColor = System.Drawing.Color.Transparent;
