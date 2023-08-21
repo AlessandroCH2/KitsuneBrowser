@@ -1,7 +1,7 @@
 # KitsuneBrowser
 <img src="https://cdn.discordapp.com/attachments/875727886169047050/1143120753630388264/image.png" width="35%" />
 
-> [!NOTE]
+> [!IMPORTANT]
 > KitsuneBrowser is still in working progress, use it at your risk
 
 Download the latest alpha release [here]([https://pages.github.com/](https://github.com/AlessandroCH2/KitsuneBrowser/releases/latest/download/KitsuneBrowser.zip))
