@@ -9,6 +9,11 @@ Download the latest alpha release [here](https://github.com/AlessandroCH2/Kitsun
 
 <img src="https://cdn.discordapp.com/attachments/875727886169047050/1143120021653037056/image.png" width="65%" />
 
+## Supported languages
+
+- [x] English
+- [x] Italian
+- [ ] Others...
 
 ## Roadmap
 
