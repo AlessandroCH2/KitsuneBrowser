@@ -1,5 +1,6 @@
 # KitsuneBrowser
 <img src="https://cdn.discordapp.com/attachments/875727886169047050/1143120753630388264/image.png" width="35%" />
+
 > [!NOTE]
 > KitsuneBrowser is still in working progress, use it at your risk
 
