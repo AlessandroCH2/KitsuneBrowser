@@ -4,7 +4,7 @@
 > [!IMPORTANT]
 > KitsuneBrowser is still in working progress, use it at your risk
 
-Download the latest alpha release [here]([https://pages.github.com/](https://github.com/AlessandroCH2/KitsuneBrowser/releases/latest/download/KitsuneBrowser.zip))
+Download the latest alpha release [here](https://github.com/AlessandroCH2/KitsuneBrowser/releases/latest/download/KitsuneBrowser.zip)
 ## Screenshots
 
 <img src="https://cdn.discordapp.com/attachments/875727886169047050/1143120021653037056/image.png" width="65%" />
