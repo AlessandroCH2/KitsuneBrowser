@@ -72,10 +72,11 @@ namespace KitsuneBrowser
             parrotToolStrip1.ForeColor = Color.White;
        //     parrotToolStrip1.RenderMode = ToolStripRenderMode.Custom;
             chromiumWebBrowser1.LoadUrl(LinkToOpenWith);
+            showFavorites();
             if (BrowserChromium.instance.settings.favorites)
             {
                 this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 72);
-                showFavorites();
+                
 
                 this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 72);
                 
@@ -449,7 +450,7 @@ namespace KitsuneBrowser
                 return BrowserChromium.instance.Icon.ToBitmap();
             }
         }
-        private void showFavorites()
+        public void showFavorites()
         {
             new System.Threading.Thread(() =>
             {
@@ -551,7 +552,10 @@ namespace KitsuneBrowser
     public class CustomProtocolSchemeHandlerFactory : ISchemeHandlerFactory
     {
         public const string SchemeName = "kitsune";
-
+        public string getTranslated(string key)
+        {
+            return BrowserChromium.instance.settings.getTranslated(key);
+        }
         public IResourceHandler Create(IBrowser browser, IFrame frame, string schemeName, IRequest request)
         {
             if (schemeName == SchemeName)
@@ -569,14 +573,14 @@ namespace KitsuneBrowser
                     HtmlPageBuilder builder = new HtmlPageBuilder();
                     builder.addTag("html");
                     builder.addTag("head");
-                    builder.addTitle("Settings");
+                    builder.addTitle(getTranslated("settings_page_name"));
                     builder.addStyles(Resources.style.Replace("$backgroundImage$", BrowserChromium.instance.settings.backgroundImage));
                     builder.closeTag("head");
                     builder.addTag("body");
 
                     //Topbar
                     builder.addTag("div", "topbar");
-                    builder.writeContent("Settings");
+                    builder.writeContent(getTranslated("settings_page_name"));
                     builder.closeTag("div");
                     builder.addTag("div", "flex-grid");
                     //Settings content
@@ -586,12 +590,19 @@ namespace KitsuneBrowser
 
                     builder.addSettingBoolean("Episodes of today", BrowserChromium.instance.settings.animeEpisodesDay, "window.browserSettings.setAnimeEpisodeDay(this.checked);");
                     builder.closeTag("div");
-                    //Style settings
+                    //Appearance settings
 
                     builder.addTag("div", "download-item");
-                    builder.addTag("div", "item-name"); builder.writeContent("Browser Style"); builder.closeTag("div");
+                    builder.addTag("div", "item-name"); builder.writeContent(getTranslated("settings_page_appearance")); builder.closeTag("div");
 
-                    builder.addSettingBoolean("Show favorites bar", BrowserChromium.instance.settings.favorites, "window.browserSettings.setFavoritesVisibility(this.checked);");
+                    builder.addSettingBoolean(getTranslated("settings_page_appearance_favoritebar"), BrowserChromium.instance.settings.favorites, "window.browserSettings.setFavoritesVisibility(this.checked);");
+                    builder.closeTag("div");
+                    //Language settings
+
+                    builder.addTag("div", "download-item");
+                    builder.addTag("div", "item-name"); builder.writeContent(getTranslated("settings_page_language")); builder.closeTag("div");
+
+                    builder.addLanguage(getTranslated("settings_page_language_browser_lang"), BrowserChromium.instance.settings.language, "window.browserSettings.setLanguage(this.options[this.selectedIndex].value);");
                     builder.closeTag("div");
 
                     //End here

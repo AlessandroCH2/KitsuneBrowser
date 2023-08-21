@@ -37,6 +37,22 @@ namespace KitsuneBrowser
             }
             writeContent("<input type='"+type+"' class='"+classes+"' name='"+name+"' "+isChecked+" onclick=\""+clickfunc+"\"/>");
         }
+        public void addLanguage(string title, Language language, string clickfunc)
+        {
+            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px;'>");
+            writeContent("<div style='float: left;'>");
+
+            writeContent(title);
+            closeTag("div");
+            writeContent("<div style='float: right;'>");
+            writeContent("<select name=\"language\" id=\"language\" value='"+language.ToString()+ "' onclick=\""+clickfunc+"\">");
+            writeContent("<option value=\""+language.ToString()+"\" >"+BrowserChromium.instance.settings.getTranslated("lang_name")+"</option>");
+            if (language != Language.en) writeContent("<option value=\"en\">English</option>");
+            if (language != Language.it) writeContent("<option value=\"it\">Italiano</option>");
+            writeContent("</select>");
+            closeTag("div");
+            closeTag("div");
+        }
         public void addSettingBoolean(string checkboxtitle, bool defaultValue, string clickfunc)
         {
 
@@ -63,5 +79,7 @@ namespace KitsuneBrowser
         {
             return content;
         }
+
+       
     }
 }

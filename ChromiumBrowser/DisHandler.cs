@@ -38,6 +38,7 @@ namespace KitsuneBrowser
         }
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
+          
             //To disable the menu then call clear
              model.Clear();
 

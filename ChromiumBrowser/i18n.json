@@ -1,6 +1,7 @@
 ﻿{
 
     "en": {
+       "lang_name": "English",
        "contextmenu_openlinknewtab": "Open link in new tab",
        "contextmenu_copylink": "Copy link",
        "contextmenu_savelinkas": "Save link as...",
@@ -16,10 +17,16 @@
        "contextmenu_copy": "Copy",
        "contextmenu_paste": "Paste",
        "contextmenu_pagesource": "View page source",
-       "contextmenu_devtools": "Inspect"
+       "contextmenu_devtools": "Inspect",
+       "settings_page_name": "Settings",
+       "settings_page_appearance": "Appearance",
+       "settings_page_appearance_favoritebar": "Show favorites bar",
+       "settings_page_language": "Preferred language",
+       "settings_page_language_browser_lang": "Browser language"
       },
 
     "it": {
+        "lang_name": "Italiano",
         "contextmenu_openlinknewtab": "Apri link in un altra scheda",
         "contextmenu_copylink": "Copia link",
         "contextmenu_savelinkas": "Salva link come...",
@@ -35,7 +42,12 @@
         "contextmenu_copy": "Copia",
         "contextmenu_paste": "Incolla",
         "contextmenu_pagesource": "Visualizza sorgente pagina",
-        "contextmenu_devtools": "Ispeziona"
+        "contextmenu_devtools": "Ispeziona",
+        "settings_page_name": "Impostazioni",
+        "settings_page_appearance": "Appearance",
+        "settings_page_appearance_favoritebar": "Mostra barra dei preferiti",
+        "settings_page_language": "Lingua preferita",
+        "settings_page_language_browser_lang": "Lingua del browser"
        }
 
 }

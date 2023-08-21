@@ -60,7 +60,8 @@ namespace KitsuneBrowser
         protected void OnTabClicked(TitleBarTabEventArgs e)
         {
             this.Text = SelectedTab.Content.Text;
-            
+            TabWindow win = (TabWindow)SelectedTab.Content;
+            win.showFavorites();
         }
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
         protected override void WndProc(ref Message m)
