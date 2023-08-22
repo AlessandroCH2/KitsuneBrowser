@@ -19,7 +19,7 @@ Download the latest alpha release [here](https://github.com/AlessandroCH2/Kitsun
 
 - [ ] Add more settings
 - [ ] Homepage links customizable
-- [ ] Button for website certificate
+- [x] Button for website certificate
 - [ ] Search bar with latest Search
 - [ ] Custom extensions support (Similar to Chrome)
 - [x] Context menu for favorites right click (to-do very soon)
