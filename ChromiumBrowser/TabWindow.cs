@@ -20,6 +20,8 @@ using System.Security.Policy;
 using System.Xml.Linq;
 using System.Net;
 using System.Windows.Controls.Primitives;
+using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics.Eventing.Reader;
 
 namespace KitsuneBrowser
 {
@@ -27,6 +29,7 @@ namespace KitsuneBrowser
     public partial class TabWindow : Form
     {
         public CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
+        public CertificateInfo certificateInfo = null;
         DisHandler handler;
         public string LinkToOpenWith = "kitsune://homepage";
         public TabWindow(string link)
@@ -89,8 +92,9 @@ namespace KitsuneBrowser
 
                 this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 46);
             }
+           
 
-          
+
         }
         public TabWindow()
         {
@@ -109,6 +113,12 @@ namespace KitsuneBrowser
             if (BrowserChromium.instance.favicons_loaded.TryGetValue(chromiumWebBrowser1.GetBrowser().MainFrame.Url, out var favicon))
             {
                 this.Icon = favicon;
+            }
+            certificateInfo = new CertificateInfo(chromiumWebBrowser1.GetBrowser().MainFrame.Url);
+            if(certificateInfo.cert_ != null)
+            {
+              //  Cef.GetGlobalCookieManager().
+              //  MessageBox.Show(certificateInfo.cert_.GetExpirationDateString(),"Certificate: "+ chromiumWebBrowser1.GetBrowser().MainFrame.Url);
             }
         }
         async Task<Icon> GetIcon(string url)
@@ -198,36 +208,40 @@ namespace KitsuneBrowser
         }
         private void DownloadUpdatePage_Tick(object sender, EventArgs e)
         {
-            if(chromiumWebBrowser1.GetMainFrame() != null)
-            if(chromiumWebBrowser1.GetMainFrame().Url == "kitsune://downloads/")
+            if (chromiumWebBrowser1.IsBrowserInitialized)
             {
-                for(int i=0; i < BrowserChromium.instance.downloadManager.items.Count; i++)
-                {
-                   
-                    DownloadObject obj = BrowserChromium.instance.downloadManager.items[i];
-                    string pauseResumeSvg = BrowserChromium.instance.downloadManager.Button_Pause;
-                    if(obj.status == DownloadStatus.Paused)
+                if (chromiumWebBrowser1.GetMainFrame() != null)
+                    if (chromiumWebBrowser1.GetMainFrame().Url == "kitsune://downloads/")
                     {
-                        pauseResumeSvg = BrowserChromium.instance.downloadManager.Button_Resume;
+                        for (int i = 0; i < BrowserChromium.instance.downloadManager.items.Count; i++)
+                        {
+
+                            DownloadObject obj = BrowserChromium.instance.downloadManager.items[i];
+                            string pauseResumeSvg = BrowserChromium.instance.downloadManager.Button_Pause;
+                            if (obj.status == DownloadStatus.Paused)
+                            {
+                                pauseResumeSvg = BrowserChromium.instance.downloadManager.Button_Resume;
+                            }
+                            if (obj.status == DownloadStatus.Finished || obj.status == DownloadStatus.Canceled)
+                            {
+                                var script2 = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('progression-ITEM-" + obj.itemName + "').className = 'download-progression hide'; }";
+                                var response2 = chromiumWebBrowser1.EvaluateScriptAsync(script2);
+                            }
+                            int perc = obj.PercentComplete;
+                            string progressString = perc + "% - " + DownloadManager.SizeSuffix(obj.downloadedBytes) + " / " + DownloadManager.SizeSuffix(obj.totalBytes) + ", " + DownloadManager.SizeSuffix(obj.downloadSpeed) + "/s";
+                            var script = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('STATUS-ITEM-" + obj.itemName + "').innerHTML = '" + progressString + "'; document.getElementById('progress-bar-ITEM-" + obj.itemName + "').style.width = '" + obj.PercentComplete + "%'; }";
+                            var response = chromiumWebBrowser1.EvaluateScriptAsync(script);
+                            script = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('pauseresumebutton-" + obj.itemName + "').innerHTML = '" + pauseResumeSvg + "'; }";
+                            response = chromiumWebBrowser1.EvaluateScriptAsync(script);
+                            if (obj.status == DownloadStatus.Finished)
+                            {
+                                var script2 = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('progression-ITEM-" + obj.itemName + "').className = 'download-progression hide'; }";
+                                var response2 = chromiumWebBrowser1.EvaluateScriptAsync(script2);
+                            }
+                        }
                     }
-                    if(obj.status == DownloadStatus.Finished || obj.status == DownloadStatus.Canceled )
-                    {
-                        var script2 = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('progression-ITEM-" + obj.itemName + "').className = 'download-progression hide'; }";
-                        var response2 = chromiumWebBrowser1.EvaluateScriptAsync(script2);
-                    }
-                    int perc = obj.PercentComplete;
-                    string progressString = perc + "% - " + DownloadManager.SizeSuffix(obj.downloadedBytes) + " / " + DownloadManager.SizeSuffix(obj.totalBytes)+", "+DownloadManager.SizeSuffix(obj.downloadSpeed)+"/s";
-                    var script = "if(document.getElementById('progress-bar-ITEM-"+obj.itemName+ "') != null){document.getElementById('STATUS-ITEM-" + obj.itemName+ "').innerHTML = '" + progressString + "'; document.getElementById('progress-bar-ITEM-" + obj.itemName+ "').style.width = '"+obj.PercentComplete+"%'; }";
-                    var response = chromiumWebBrowser1.EvaluateScriptAsync(script);
-                    script = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('pauseresumebutton-" + obj.itemName + "').innerHTML = '" + pauseResumeSvg + "'; }";
-                    response = chromiumWebBrowser1.EvaluateScriptAsync(script);
-                    if (obj.status == DownloadStatus.Finished)
-                    {
-                        var script2 = "if(document.getElementById('progress-bar-ITEM-" + obj.itemName + "') != null){document.getElementById('progression-ITEM-" + obj.itemName + "').className = 'download-progression hide'; }";
-                        var response2 = chromiumWebBrowser1.EvaluateScriptAsync(script2);
-                    }
-                }
             }
+           
             int totCompleted = 0;
             int totalBytes = 0;
             int actualBytes = 0;
@@ -283,15 +297,16 @@ namespace KitsuneBrowser
             {
                 if (BrowserChromium.instance.settings.favorites)
                 {
-                    this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 72);
-                    this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 72);
+                    if (chromiumWebBrowser1.IsBrowserInitialized) this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 72);
+                    if (chromiumWebBrowser1.IsBrowserInitialized) this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 72);
                 }
                 else
                 {
-                    this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 46);
-                    this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 46);
+                    if (chromiumWebBrowser1.IsBrowserInitialized) this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 46);
+                    if (chromiumWebBrowser1.IsBrowserInitialized) this.chromiumWebBrowser1.Size = new System.Drawing.Size(this.Width, this.Height - 46);
                 }
             }
+            if (chromiumWebBrowser1.IsBrowserInitialized)
             if (getFavoriteExist(this.chromiumWebBrowser1.GetMainFrame().Url))
             {
                 favoriteButton.Image = Resources.favorites_exist;
@@ -591,7 +606,37 @@ namespace KitsuneBrowser
             return CefReturnValue.Cancel;
         }
     }
+    public class CertificateInfo
+    {
 
+        public X509Certificate2 cert_;
+        public string url;
+        public CertificateInfo(string ur)
+        {
+            try
+            {
+                url = ur;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                response.Close();
+                //retrieve the ssl cert and assign it to an X509Certificate object
+                X509Certificate cert = request.ServicePoint.Certificate;
+                //convert the X509Certificate to an X509Certificate2 object by passing it into the constructor
+                X509Certificate2 cert2 = new X509Certificate2(cert);
+                cert_ = cert2;
+                string cn = cert2.GetIssuerName();
+                string cedate = cert2.GetExpirationDateString();
+                string cpub = cert2.GetPublicKeyString();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            //display the cert dialog box
+
+        }
+    }
     public class CustomProtocolSchemeHandlerFactory : ISchemeHandlerFactory
     {
         public const string SchemeName = "kitsune";

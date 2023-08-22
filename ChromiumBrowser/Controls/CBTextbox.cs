@@ -16,6 +16,8 @@ using System.Reflection;
 using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
+using KitsuneBrowser.Properties;
+using CefSharp;
 
 namespace KitsuneBrowser.Controls
 {
@@ -104,6 +106,30 @@ namespace KitsuneBrowser.Controls
         {
          
         }
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            base.OnPaintBackground(e);
+            Pen penBg = new Pen(normalColor);
+
+            if (hovered)
+            {
+
+                penBg.Color = hoverColor;
+                if (focused)
+                {
+                    penBg.Color = focusColor;
+                }
+            }
+            else
+            {
+
+            }
+            Graphics g = e.Graphics;
+            Brush brush = penBg.Brush;
+
+            g.FillPath(brush, RoundedRect(e.ClipRectangle, 12));      
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -173,15 +199,7 @@ namespace KitsuneBrowser.Controls
         {
             textBox1.Text = Text;
             text = Text;
-            Uri uri;
-            if (System.Uri.TryCreate(textBox1.Text, UriKind.Absolute, out uri))
-            {
-                label1.Text = "Website";
-            }
-            else
-            {
-                label1.Text = "Search";
-            }
+            
         }
         private void textBox1_Enter(object sender, EventArgs e)
         {
@@ -198,14 +216,6 @@ namespace KitsuneBrowser.Controls
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             Uri uri;
-            if (System.Uri.TryCreate(textBox1.Text, UriKind.Absolute, out uri))
-            {
-                label1.Text = "Website";
-            }
-            else
-            {
-                label1.Text = "Search";
-            }
             if (e.KeyData == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
@@ -226,7 +236,59 @@ namespace KitsuneBrowser.Controls
 
         private void invalidation_Tick(object sender, EventArgs e)
         {
-          //  this.Invalidate();
+            TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+            Uri uri;
+          //  if (win.chromiumWebBrowser1.IsLoading) return;
+            if (System.Uri.TryCreate(textBox1.Text, UriKind.Absolute, out uri))
+            {
+               
+                if (textBox1.Text == win.chromiumWebBrowser1.GetMainFrame().Url)
+                {
+                    if(win.certificateInfo != null)
+                    {
+                        if(win.certificateInfo.cert_ != null) {
+                            this.pictureBox1.Image = Resources.https_secure;
+                        }
+                        else
+                        {
+                            if (textBox1.Text.StartsWith("kitsune://"))
+                            {
+                                this.pictureBox1.Image = Resources.kitsune.ToBitmap();
+                            }
+                            else
+                            {
+                                this.pictureBox1.Image = Resources.no_secure;
+                            }
+                           
+                        }
+                    }
+                    else
+                    {
+                       
+                       
+                    }
+                   
+                }
+                else
+                {
+                    
+                    this.pictureBox1.Image = Resources.NoSiteFavicon.ToBitmap();
+                }
+                
+            }
+            else
+            {
+                this.pictureBox1.Image = Resources.kitsune.ToBitmap();
+            }
+            //  this.Invalidate();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+            WebPageCertificate form = new WebPageCertificate(win.certificateInfo);
+            form.Show();
+
         }
     }
    

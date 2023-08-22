@@ -221,6 +221,12 @@
     <Compile Include="TabWindow.Designer.cs">
       <DependentUpon>TabWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="WebPageCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebPageCertificate.Designer.cs">
+      <DependentUpon>WebPageCertificate.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsSizingBoxesBlack.cs" />
     <EmbeddedResource Include="Controls\CBTextbox.resx">
       <DependentUpon>CBTextbox.cs</DependentUpon>
@@ -243,6 +249,9 @@
     </Compile>
     <EmbeddedResource Include="TabWindow.resx">
       <DependentUpon>TabWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebPageCertificate.resx">
+      <DependentUpon>WebPageCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="i18n.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -57,7 +57,7 @@ namespace KitsuneBrowser
         {
             mainConsole.Add(str);
         }
-        protected void OnTabClicked(TitleBarTabEventArgs e)
+        protected new void OnTabClicked(TitleBarTabEventArgs e)
         {
             this.Text = SelectedTab.Content.Text;
             TabWindow win = (TabWindow)SelectedTab.Content;
