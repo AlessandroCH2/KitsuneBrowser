@@ -22,7 +22,7 @@ Download the latest alpha release [here](https://github.com/AlessandroCH2/Kitsun
 - [ ] Button for website certificate
 - [ ] Search bar with latest Search
 - [ ] Custom extensions support (Similar to Chrome)
-- [ ] Context menu for favorites right click (to-do very soon)
+- [x] Context menu for favorites right click (to-do very soon)
 - [ ] Saving chronology
 - [ ] Saving previous download (and selectable download directory)
 - [ ] Zoom on web pages (to-do very soon)
