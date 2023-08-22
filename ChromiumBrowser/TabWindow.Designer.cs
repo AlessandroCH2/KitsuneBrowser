@@ -42,6 +42,9 @@
             this.back = new ReaLTaiizor.Controls.Button();
             this.cbTextbox1 = new KitsuneBrowser.Controls.CBTextbox();
             this.DownloadUpdatePage = new System.Windows.Forms.Timer(this.components);
+            this.favoritesContextMenu_ = new System.Windows.Forms.ContextMenu();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,6 +252,24 @@
             this.DownloadUpdatePage.Interval = 1000;
             this.DownloadUpdatePage.Tick += new System.EventHandler(this.DownloadUpdatePage_Tick);
             // 
+            // favoritesContextMenu_
+            // 
+            this.favoritesContextMenu_.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem2});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.Text = "Open link to new tab";
+            this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 1;
+            this.menuItem2.Text = "Delete";
+            this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
+            // 
             // TabWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,5 +300,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private ReaLTaiizor.Controls.ParrotToolStrip parrotToolStrip1;
         private ReaLTaiizor.Controls.Button favoriteButton;
+        private System.Windows.Forms.ContextMenu favoritesContextMenu_;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem menuItem2;
     }
 }

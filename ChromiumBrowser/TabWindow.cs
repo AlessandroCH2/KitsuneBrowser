@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Security.Policy;
 using System.Xml.Linq;
 using System.Net;
+using System.Windows.Controls.Primitives;
 
 namespace KitsuneBrowser
 {
@@ -488,6 +489,7 @@ namespace KitsuneBrowser
             }).Start();
            
         }
+        ToolStripButton selectedFavorite = null;
         private void b_MouseUp(object sender, MouseEventArgs e)
         {
             ToolStripButton b = (ToolStripButton)sender;
@@ -497,6 +499,13 @@ namespace KitsuneBrowser
             if (e.Button == MouseButtons.Left)
             {
                 this.loadPage(address);
+            }else if(e.Button == MouseButtons.Right)
+            {
+                selectedFavorite = b;
+                
+                this.favoritesContextMenu_.MenuItems[0].Text = BrowserChromium.instance.settings.getTranslated("contextmenu_openlinknewtab");
+                this.favoritesContextMenu_.MenuItems[1].Text = BrowserChromium.instance.settings.getTranslated("contextmenu_delete");
+                this.favoritesContextMenu_.Show(panel1,new Point(Cursor.Position.X - BrowserChromium.instance.Location.X, e.Y));
             }
                 
         }
@@ -510,6 +519,40 @@ namespace KitsuneBrowser
         private void favoriteButton_Click(object sender, EventArgs e)
         {
             addFavorit(this.chromiumWebBrowser1.GetMainFrame().Url, this.Text, this.Icon);
+        }
+
+
+        private void menuItem1_Click(object sender, EventArgs e)
+        {
+            if (selectedFavorite != null)
+            {
+                string address = selectedFavorite.ToolTipText;
+                string name = selectedFavorite.Text;
+                BrowserChromium.instance.openLinkNewTab(address);
+            }
+        }
+
+        private void menuItem2_Click(object sender, EventArgs e)
+        {
+            if (selectedFavorite != null)
+            {
+                string address = selectedFavorite.ToolTipText;
+                string name = selectedFavorite.Text;
+                parrotToolStrip1.Items.RemoveByKey(address);
+                XmlDocument myXml = new XmlDocument();
+                myXml.Load(favXml);
+                XmlElement root = myXml.DocumentElement;
+                foreach (XmlElement x in root.ChildNodes)
+                {
+                    if (x.GetAttribute("url").Equals(address))
+                    {
+                        root.RemoveChild(x);
+                        break;
+                    }
+                }
+
+                myXml.Save(favXml);
+            }
         }
     }
 
