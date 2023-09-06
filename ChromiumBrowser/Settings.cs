@@ -21,21 +21,30 @@ namespace KitsuneBrowser
         en,
         it
     }
+    public enum SearchEngine
+    {
+        google,
+        bing
+    }
     public class Settings
     {
         public ILocalizer localizer;
         //Language
         public Language language = Language.en;
+        //SearchEngine
+        public SearchEngine searchEngine = SearchEngine.google;
         //Homepage
-        public bool animeEpisodesDay = true;
+
         public string backgroundImage = "https://cdn.donmai.us/original/83/79/__yae_miko_genshin_impact_drawn_by_shade_of_a_cat__8379c9f5b122f17459aab2db244139a5.png";
 
         //favorites
-        public bool favorites = true; //Coming soon
+        public bool favorites = true; 
+
         XmlDocument settingsXml;
-        public void SetAnimeEpisodeDay(bool val)
+        public void SetSearchEngine(string engine)
         {
-            animeEpisodesDay = val;
+            Enum.TryParse(engine, out searchEngine);
+            saveString("searchEngine", searchEngine.ToString());
         }
         public void SetLanguage(string lang)
         {
@@ -43,6 +52,7 @@ namespace KitsuneBrowser
             saveString("language", language.ToString());
           
         }
+
         public void SetFavoritesVisibility(bool val)
         {
             favorites = val;
@@ -71,7 +81,7 @@ namespace KitsuneBrowser
             ILocalizationSource source = new JsonLocalizationSource(new FileInfo(Assembly.GetAssembly(typeof(Settings)).Location.Replace("KitsuneBrowser.exe","") + @"i18n.json"), PropertyCaseSensitivity.CaseSensitive);
             localizer = new Localizer(source, "en");
        
-           settingsFile = Assembly.GetAssembly(typeof(Settings)).Location.Replace("KitsuneBrowser.exe", "") + @"\BrowserSettings.xml";
+            settingsFile = Assembly.GetAssembly(typeof(Settings)).Location.Replace("KitsuneBrowser.exe", "") + @"\BrowserSettings.xml";
            
             if (File.Exists(settingsFile))
             {
@@ -90,6 +100,7 @@ namespace KitsuneBrowser
         }
         public void loadSettings()
         {
+            Enum.TryParse(loadString("searchEngine", searchEngine.ToString()), out searchEngine);
             Enum.TryParse(loadString("language", language.ToString()), out language);
             bool.TryParse(loadString("favoritesBar", favorites.ToString()), out favorites);
         }

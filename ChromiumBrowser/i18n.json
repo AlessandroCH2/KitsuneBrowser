@@ -23,7 +23,8 @@
        "settings_page_appearance": "Appearance",
        "settings_page_appearance_favoritebar": "Show favorites bar",
        "settings_page_language": "Preferred language",
-       "settings_page_language_browser_lang": "Browser language"
+       "settings_page_language_browser_lang": "Browser language",
+       "settings_page_search_engine": "Search engine used in the address bar."
       },
 
     "it": {
@@ -49,7 +50,8 @@
         "settings_page_appearance": "Appearance",
         "settings_page_appearance_favoritebar": "Mostra barra dei preferiti",
         "settings_page_language": "Lingua preferita",
-        "settings_page_language_browser_lang": "Lingua del browser"
+        "settings_page_language_browser_lang": "Lingua del browser",
+        "settings_page_search_engine": "Motore di ricerca utilizzato nella barra degli indirizzi."
        }
 
 }

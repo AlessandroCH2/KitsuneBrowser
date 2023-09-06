@@ -39,7 +39,7 @@ namespace KitsuneBrowser
         }
         public void addLanguage(string title, Language language, string clickfunc)
         {
-            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px;'>");
+            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px; height: 40px;'>");
             writeContent("<div style='float: left;'>");
 
             writeContent(title);
@@ -53,10 +53,27 @@ namespace KitsuneBrowser
             closeTag("div");
             closeTag("div");
         }
+
+        public void addSearchEngine(string title, SearchEngine language, string clickfunc)
+        {
+            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px; height: 40px;'>");
+            writeContent("<div style='float: left;'>");
+
+            writeContent(title);
+            closeTag("div");
+            writeContent("<div style='float: right;'>");
+            writeContent("<select name=\"language\" id=\"language\" value='" + language.ToString() + "' onclick=\"" + clickfunc + "\">");
+            writeContent("<option value=\"" + language.ToString() + "\" >" + language.ToString() + "</option>");
+            if (language != SearchEngine.google) writeContent("<option value=\"google\">google</option>");
+            if (language != SearchEngine.bing) writeContent("<option value=\"bing\">bing</option>");
+            writeContent("</select>");
+            closeTag("div");
+            closeTag("div");
+        }
         public void addSettingBoolean(string checkboxtitle, bool defaultValue, string clickfunc)
         {
 
-            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px;'>");
+            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px; height: 40px;'>");
             writeContent("<div style='float: left;'>");
 
             writeContent(checkboxtitle);

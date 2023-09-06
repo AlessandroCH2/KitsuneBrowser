@@ -18,6 +18,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using KitsuneBrowser.Properties;
 using CefSharp;
+using CefSharp.WinForms;
 
 namespace KitsuneBrowser.Controls
 {
@@ -227,8 +228,17 @@ namespace KitsuneBrowser.Controls
                 }
                 else
                 {
-                    TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
-                    win.loadPage("https://www.google.com/search?q=" + textBox1.Text);
+                    if(BrowserChromium.instance.settings.searchEngine == SearchEngine.google)
+                    {
+                        TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+                        win.loadPage("https://www.google.com/search?q=" + textBox1.Text);
+                    }
+                    else if (BrowserChromium.instance.settings.searchEngine == SearchEngine.bing)
+                    {
+                        TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+                        win.loadPage("https://bing.com/search?q=" + textBox1.Text);
+                    }
+
                 }
                 
             }
@@ -236,10 +246,19 @@ namespace KitsuneBrowser.Controls
 
         private void invalidation_Tick(object sender, EventArgs e)
         {
-            TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+           
+                TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
             Uri uri;
-          //  if (win.chromiumWebBrowser1.IsLoading) return;
-            if (System.Uri.TryCreate(textBox1.Text, UriKind.Absolute, out uri))
+            if (win.chromiumWebBrowser1.IsBrowserInitialized)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+                //  if (win.chromiumWebBrowser1.IsLoading) return;
+                if (System.Uri.TryCreate(textBox1.Text, UriKind.Absolute, out uri))
             {
                
                 if (textBox1.Text == win.chromiumWebBrowser1.GetMainFrame().Url)

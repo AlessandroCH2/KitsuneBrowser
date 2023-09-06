@@ -315,6 +315,25 @@ namespace KitsuneBrowser
             {
                 favoriteButton.Image = Resources.favorites;
             }
+            if (chromiumWebBrowser1.IsBrowserInitialized)
+            {
+                if (chromiumWebBrowser1.CanGoForward)
+                {
+                    forward.Enabled = true;
+                }
+                else
+                {
+                    forward.Enabled = false;
+                }
+                if (chromiumWebBrowser1.CanGoBack)
+                {
+                    back.Enabled = true;
+                }
+                else
+                {
+                    back.Enabled = false;
+                }
+            }
         }
 
         private void reload_Click(object sender, EventArgs e)
@@ -663,6 +682,7 @@ namespace KitsuneBrowser
                     builder.addTag("head");
                     builder.addTitle(getTranslated("settings_page_name"));
                     builder.addStyles(Resources.style.Replace("$backgroundImage$", BrowserChromium.instance.settings.backgroundImage));
+                    builder.addStyles("<style>.download-item { height: auto; }</style>");
                     builder.closeTag("head");
                     builder.addTag("body");
 
@@ -674,23 +694,46 @@ namespace KitsuneBrowser
                     //Settings content
                     //Homepage settings
                     builder.addTag("div", "download-item");
-                    builder.addTag("div", "item-name"); builder.writeContent("Homepage configuration"); builder.closeTag("div");
+                   // builder.addTag("div", "item-name"); builder.writeContent("Homepage configuration"); builder.closeTag("div");
 
-                    builder.addSettingBoolean("Episodes of today", BrowserChromium.instance.settings.animeEpisodesDay, "window.browserSettings.setAnimeEpisodeDay(this.checked);");
-                    builder.closeTag("div");
+                    //   builder.addSettingBoolean("Episodes of today", BrowserChromium.instance.settings.animeEpisodesDay, "window.browserSettings.setAnimeEpisodeDay(this.checked);");
+                    //    builder.closeTag("div");
                     //Appearance settings
 
-                    builder.addTag("div", "download-item");
+                    // builder.addTag("div", "download-item");
                     builder.addTag("div", "item-name"); builder.writeContent(getTranslated("settings_page_appearance")); builder.closeTag("div");
 
                     builder.addSettingBoolean(getTranslated("settings_page_appearance_favoritebar"), BrowserChromium.instance.settings.favorites, "window.browserSettings.setFavoritesVisibility(this.checked);");
-                    builder.closeTag("div");
+                    // builder.closeTag("div");
                     //Language settings
 
-                    builder.addTag("div", "download-item");
+                    // builder.addTag("div", "download-item");
                     builder.addTag("div", "item-name"); builder.writeContent(getTranslated("settings_page_language")); builder.closeTag("div");
 
                     builder.addLanguage(getTranslated("settings_page_language_browser_lang"), BrowserChromium.instance.settings.language, "window.browserSettings.setLanguage(this.options[this.selectedIndex].value);");
+                    //  builder.closeTag("div");
+
+                    //Downloads
+
+                    // builder.addTag("div", "download-item");
+                    builder.addTag("div", "item-name"); builder.writeContent("Downloads"); builder.closeTag("div");
+
+                    //  builder.addLanguage(getTranslated("settings_page_language_browser_lang"), BrowserChromium.instance.settings.language, "window.browserSettings.setLanguage(this.options[this.selectedIndex].value);");
+                    //  builder.closeTag("div");
+
+                    //Search Engine
+
+                 
+                    builder.addTag("div", "item-name"); builder.writeContent("Search engine"); builder.closeTag("div");
+
+                    builder.addSearchEngine(getTranslated("settings_page_search_engine"), BrowserChromium.instance.settings.searchEngine, "window.browserSettings.setSearchEngine(this.options[this.selectedIndex].value);");
+
+                    //Cache settings
+
+
+                    builder.addTag("div", "item-name"); builder.writeContent("Cache settings"); builder.closeTag("div");
+
+                    
                     builder.closeTag("div");
 
                     //End here
