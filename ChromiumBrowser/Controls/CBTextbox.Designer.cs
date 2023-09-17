@@ -52,6 +52,7 @@
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
             this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
             // 
             // pictureBox1
@@ -85,6 +86,7 @@
             this.MouseLeave += new System.EventHandler(this.CBTextbox_MouseLeave);
             this.MouseHover += new System.EventHandler(this.CBTextbox_MouseHover);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CBTextbox_MouseMove);
+            this.Resize += new System.EventHandler(this.CBTextbox_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

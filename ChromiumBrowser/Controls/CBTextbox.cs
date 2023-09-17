@@ -110,25 +110,7 @@ namespace KitsuneBrowser.Controls
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaintBackground(e);
-            Pen penBg = new Pen(normalColor);
-
-            if (hovered)
-            {
-
-                penBg.Color = hoverColor;
-                if (focused)
-                {
-                    penBg.Color = focusColor;
-                }
-            }
-            else
-            {
-
-            }
-            Graphics g = e.Graphics;
-            Brush brush = penBg.Brush;
-
-            g.FillPath(brush, RoundedRect(e.ClipRectangle, 12));      
+              
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -147,33 +129,37 @@ namespace KitsuneBrowser.Controls
             }
             else
             {
-
+                if (focused)
+                {
+                    penBg.Color = focusColor;
+                }
             }
                 Graphics g = e.Graphics;
             Brush brush = penBg.Brush;
 
             g.FillPath(brush,RoundedRect(e.ClipRectangle,12));
             textBox1.BackColor = penBg.Color;
+            pictureBox1.BackColor = penBg.Color;
         }
 
         private void CBTextbox_MouseEnter(object sender, EventArgs e)
         {
-            hovered = true;
-            pnColorAnimator.Animate(hoverColor, 200);
-            this.Invalidate();
+            //   hovered = true;
+            //  pnColorAnimator.Animate(hoverColor, 200);
+            //  this.Invalidate();
         }
 
         private void CBTextbox_MouseLeave(object sender, EventArgs e)
         {
-            pnColorAnimator.Animate(normalColor, 200);
-            hovered = false;
-            this.Invalidate();
+            //  pnColorAnimator.Animate(normalColor, 200);
+            //   hovered = false;
+            // this.Invalidate();
         }
 
         private void CBTextbox_MouseHover(object sender, EventArgs e)
         {
            // pnColorAnimator.Animate(hoverColor, 200);
-            hovered = true;
+         //   hovered = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -194,6 +180,11 @@ namespace KitsuneBrowser.Controls
         private void textBox1_MouseHover(object sender, EventArgs e)
         {
             hovered = true;
+            this.Invalidate();
+        }
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            hovered = false;
             this.Invalidate();
         }
         public void setText(String Text)
@@ -308,6 +299,11 @@ namespace KitsuneBrowser.Controls
             WebPageCertificate form = new WebPageCertificate(win.certificateInfo);
             form.Show();
 
+        }
+
+        private void CBTextbox_Resize(object sender, EventArgs e)
+        {
+            this.Invalidate();
         }
     }
    
