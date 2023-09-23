@@ -2,26 +2,23 @@
 using CefSharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+
 using System.Drawing;
-using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using KitsuneBrowser.Properties;
 using System.Net.Http;
-using CefSharp.DevTools.Network;
+
 using System.Xml;
-using ReaLTaiizor.Controls;
+
 using System.Reflection;
-using System.Security.Policy;
-using System.Xml.Linq;
+
 using System.Net;
-using System.Windows.Controls.Primitives;
+
 using System.Security.Cryptography.X509Certificates;
-using System.Diagnostics.Eventing.Reader;
+
 
 namespace KitsuneBrowser
 {
@@ -34,6 +31,7 @@ namespace KitsuneBrowser
         public string LinkToOpenWith = "kitsune://homepage";
         public TabWindow(string link)
         {
+         
             LinkToOpenWith = link;
             creation();
         }
@@ -98,7 +96,7 @@ namespace KitsuneBrowser
         }
         public TabWindow()
         {
-
+            LinkToOpenWith = BrowserChromium.instance.settings.homeButtonlink;
             creation();
         }
         public void loadPage(string url)
@@ -268,12 +266,13 @@ namespace KitsuneBrowser
             }
             if(totCompleted== BrowserChromium.instance.downloadManager.items.Count)
             {
-                progressBar1.Visible = false;
+                progressBarKitsune1.Visible = false;
             }
             else
             {
-                progressBar1.Visible = true;
-                progressBar1.Value = percent;
+               
+                progressBarKitsune1.Visible = true;
+                progressBarKitsune1.Value = percent;
             }
             if (oldScreenMode != newScreenMode)
             {
@@ -588,6 +587,11 @@ namespace KitsuneBrowser
                 myXml.Save(favXml);
             }
         }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            chromiumWebBrowser1.LoadUrl(BrowserChromium.instance.settings.homeButtonlink);
+        }
     }
 
     public class CustomProtocolSchemeHandler : ResourceHandler
@@ -694,13 +698,12 @@ namespace KitsuneBrowser
                     //Settings content
                     //Homepage settings
                     builder.addTag("div", "download-item");
-                   // builder.addTag("div", "item-name"); builder.writeContent("Homepage configuration"); builder.closeTag("div");
+                    builder.addTag("div", "item-name"); builder.writeContent("Homepage configuration"); builder.closeTag("div");
 
-                    //   builder.addSettingBoolean("Episodes of today", BrowserChromium.instance.settings.animeEpisodesDay, "window.browserSettings.setAnimeEpisodeDay(this.checked);");
-                    //    builder.closeTag("div");
+                    builder.addInputValue(getTranslated("settings_page_homepageLink"), BrowserChromium.instance.settings.homeButtonlink, "window.browserSettings.setHomepageLink(this.value);");
                     //Appearance settings
 
-                    // builder.addTag("div", "download-item");
+
                     builder.addTag("div", "item-name"); builder.writeContent(getTranslated("settings_page_appearance")); builder.closeTag("div");
 
                     builder.addSettingBoolean(getTranslated("settings_page_appearance_favoritebar"), BrowserChromium.instance.settings.favorites, "window.browserSettings.setFavoritesVisibility(this.checked);");

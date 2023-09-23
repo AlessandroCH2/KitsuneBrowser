@@ -30,12 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TabWindow));
-          
-
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBarKitsune1 = new KitsuneBrowser.Controls.ProgressBarKitsune();
+            this.homeButton = new ReaLTaiizor.Controls.Button();
             this.favoriteButton = new ReaLTaiizor.Controls.Button();
             this.parrotToolStrip1 = new ReaLTaiizor.Controls.ParrotToolStrip();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.downloadslist = new ReaLTaiizor.Controls.Button();
             this.settings = new ReaLTaiizor.Controls.Button();
             this.reload = new ReaLTaiizor.Controls.Button();
@@ -48,14 +47,14 @@
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-          
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(59)))), ((int)(((byte)(74)))));
+            this.panel1.Controls.Add(this.progressBarKitsune1);
+            this.panel1.Controls.Add(this.homeButton);
             this.panel1.Controls.Add(this.favoriteButton);
             this.panel1.Controls.Add(this.parrotToolStrip1);
-            this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Controls.Add(this.downloadslist);
             this.panel1.Controls.Add(this.settings);
             this.panel1.Controls.Add(this.reload);
@@ -68,6 +67,39 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1280, 72);
             this.panel1.TabIndex = 1;
+            // 
+            // progressBarKitsune1
+            // 
+            this.progressBarKitsune1.BackgroundBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(29)))), ((int)(((byte)(39)))));
+            this.progressBarKitsune1.Location = new System.Drawing.Point(1202, 34);
+            this.progressBarKitsune1.Maximum = 100;
+            this.progressBarKitsune1.Minimum = 0;
+            this.progressBarKitsune1.Name = "progressBarKitsune1";
+            this.progressBarKitsune1.ProgressBarColor = System.Drawing.Color.White;
+            this.progressBarKitsune1.Size = new System.Drawing.Size(30, 10);
+            this.progressBarKitsune1.TabIndex = 5;
+            this.progressBarKitsune1.Value = 25;
+            // 
+            // homeButton
+            // 
+            this.homeButton.BackColor = System.Drawing.Color.Transparent;
+            this.homeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(59)))), ((int)(((byte)(74)))));
+            this.homeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.homeButton.EnteredBorderColor = System.Drawing.Color.Transparent;
+            this.homeButton.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(76)))), ((int)(((byte)(101)))));
+            this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.homeButton.Image = global::KitsuneBrowser.Properties.Resources.home_button;
+            this.homeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.homeButton.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(59)))), ((int)(((byte)(74)))));
+            this.homeButton.Location = new System.Drawing.Point(113, 8);
+            this.homeButton.Name = "homeButton";
+            this.homeButton.PressedBorderColor = System.Drawing.Color.Transparent;
+            this.homeButton.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(76)))), ((int)(((byte)(101)))));
+            this.homeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.homeButton.Size = new System.Drawing.Size(30, 30);
+            this.homeButton.TabIndex = 11;
+            this.homeButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
             // favoriteButton
             // 
@@ -106,16 +138,6 @@
             this.parrotToolStrip1.Size = new System.Drawing.Size(1264, 25);
             this.parrotToolStrip1.TabIndex = 9;
             this.parrotToolStrip1.Text = "parrotToolStrip1";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(1202, 36);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(30, 5);
-            this.progressBar1.TabIndex = 7;
-            this.progressBar1.Value = 35;
-            this.progressBar1.Visible = false;
             // 
             // downloadslist
             // 
@@ -231,12 +253,11 @@
             this.cbTextbox1.BackColor = System.Drawing.Color.Transparent;
             this.cbTextbox1.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(76)))), ((int)(((byte)(101)))));
             this.cbTextbox1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(76)))), ((int)(((byte)(101)))));
-            this.cbTextbox1.Location = new System.Drawing.Point(115, 5);
+            this.cbTextbox1.Location = new System.Drawing.Point(149, 5);
             this.cbTextbox1.Name = "cbTextbox1";
             this.cbTextbox1.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(59)))), ((int)(((byte)(74)))));
-          
             this.cbTextbox1.Padding = new System.Windows.Forms.Padding(7);
-            this.cbTextbox1.Size = new System.Drawing.Size(1040, 33);
+            this.cbTextbox1.Size = new System.Drawing.Size(1011, 33);
             this.cbTextbox1.TabIndex = 0;
             this.cbTextbox1.Load += new System.EventHandler(this.cbTextbox1_Load);
             // 
@@ -291,11 +312,12 @@
         private System.Windows.Forms.Timer DownloadUpdatePage;
         private ReaLTaiizor.Controls.Button downloadslist;
         private ReaLTaiizor.Controls.Button settings;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private ReaLTaiizor.Controls.ParrotToolStrip parrotToolStrip1;
         private ReaLTaiizor.Controls.Button favoriteButton;
         private System.Windows.Forms.ContextMenu favoritesContextMenu_;
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuItem2;
+        private ReaLTaiizor.Controls.Button homeButton;
+        private Controls.ProgressBarKitsune progressBarKitsune1;
     }
 }

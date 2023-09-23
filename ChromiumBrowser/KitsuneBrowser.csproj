@@ -205,6 +205,12 @@
     <Compile Include="Controls\NvRoundButton.Designer.cs">
       <DependentUpon>NvRoundButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressBarKitsune.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProgressBarKitsune.Designer.cs">
+      <DependentUpon>ProgressBarKitsune.cs</DependentUpon>
+    </Compile>
     <Compile Include="DisHandler.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="HtmlPageBuilder.cs" />
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\NvRoundButton.resx">
       <DependentUpon>NvRoundButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProgressBarKitsune.resx">
+      <DependentUpon>ProgressBarKitsune.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -337,6 +346,7 @@
     <None Include="bundle\messagebox.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\home_button.png" />
     <None Include="Resources\Windows10\github-mark-white.svg" />
     <None Include="Resources\favorites_exist.png" />
     <None Include="Resources\favorites.png" />

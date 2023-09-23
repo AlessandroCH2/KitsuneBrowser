@@ -24,7 +24,8 @@
        "settings_page_appearance_favoritebar": "Show favorites bar",
        "settings_page_language": "Preferred language",
        "settings_page_language_browser_lang": "Browser language",
-       "settings_page_search_engine": "Search engine used in the address bar."
+       "settings_page_search_engine": "Search engine used in the address bar.",
+       "settings_page_homepageLink": "Homepage link for new tabs or when click homepage button" 
       },
 
     "it": {

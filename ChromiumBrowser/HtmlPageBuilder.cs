@@ -97,6 +97,18 @@ namespace KitsuneBrowser
             return content;
         }
 
-       
+        internal void addInputValue(string title, string homeButtonlink, string clickfunc)
+        {
+            writeContent("<div style='margin-left:15px; margin-top: 5px; margin-right: 15px; height: 40px;'>");
+            writeContent("<div style='float: left;'>");
+
+            writeContent(title);
+            closeTag("div");
+            writeContent("<div style='float: right;'>");
+            writeContent("<input name=\"inputval\" id=\"inputval\" value='" + homeButtonlink + "' onkeydown=\"" + clickfunc + "\"  />");
+   
+            closeTag("div");
+            closeTag("div");
+        }
     }
 }

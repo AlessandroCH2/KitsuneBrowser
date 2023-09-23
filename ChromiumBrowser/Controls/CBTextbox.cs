@@ -250,8 +250,11 @@ namespace KitsuneBrowser.Controls
 
         private void invalidation_Tick(object sender, EventArgs e)
         {
-           
-                TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
+            if (this.DesignMode)
+            {
+                return;
+            }
+            TabWindow win = (TabWindow)BrowserChromium.instance.SelectedTab.Content;
             Uri uri;
             if (win.chromiumWebBrowser1.IsBrowserInitialized)
             {

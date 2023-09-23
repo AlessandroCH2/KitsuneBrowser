@@ -34,7 +34,7 @@ namespace KitsuneBrowser
         //SearchEngine
         public SearchEngine searchEngine = SearchEngine.google;
         //Homepage
-
+        public string homeButtonlink = "kitsune://homepage/";
         public string backgroundImage = "https://cdn.donmai.us/original/83/79/__yae_miko_genshin_impact_drawn_by_shade_of_a_cat__8379c9f5b122f17459aab2db244139a5.png";
 
         //favorites
@@ -45,6 +45,11 @@ namespace KitsuneBrowser
         {
             Enum.TryParse(engine, out searchEngine);
             saveString("searchEngine", searchEngine.ToString());
+        }
+        public void SetHomepageLink(string hmgpage)
+        {
+            homeButtonlink = hmgpage;
+            saveString("homePageLink", hmgpage);
         }
         public void SetLanguage(string lang)
         {
@@ -103,6 +108,7 @@ namespace KitsuneBrowser
             Enum.TryParse(loadString("searchEngine", searchEngine.ToString()), out searchEngine);
             Enum.TryParse(loadString("language", language.ToString()), out language);
             bool.TryParse(loadString("favoritesBar", favorites.ToString()), out favorites);
+            homeButtonlink = loadString("homePageLink", homeButtonlink);
         }
         public void saveString(string name, string val)
         {
