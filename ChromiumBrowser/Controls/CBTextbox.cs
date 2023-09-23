@@ -111,7 +111,6 @@ namespace KitsuneBrowser.Controls
         {
             base.OnPaintBackground(e);
               
-        }
 
         protected override void OnPaint(PaintEventArgs e)
         {
