@@ -52,6 +52,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -113,9 +114,6 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EasyTabs.2.0.0\lib\net40\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="NullLib.TickAnimation, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NullLib.TickAnimation.1.2.0\lib\net47\NullLib.TickAnimation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="ReaLTaiizor, Version=3.7.9.4, Culture=neutral, processorArchitecture=MSIL">
@@ -201,7 +199,6 @@
     <Compile Include="Controls\DownloadPanel.Designer.cs">
       <DependentUpon>DownloadPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Helper.cs" />
     <Compile Include="Controls\NvRoundButton.cs">
       <SubType>UserControl</SubType>
     </Compile>

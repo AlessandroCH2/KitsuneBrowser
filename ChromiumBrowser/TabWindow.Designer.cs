@@ -30,7 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TabWindow));
-            this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
+          
+
             this.panel1 = new System.Windows.Forms.Panel();
             this.favoriteButton = new ReaLTaiizor.Controls.Button();
             this.parrotToolStrip1 = new ReaLTaiizor.Controls.ParrotToolStrip();
@@ -47,14 +48,7 @@
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // chromiumWebBrowser1
-            // 
-            this.chromiumWebBrowser1.ActivateBrowserOnCreation = false;
-            this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.chromiumWebBrowser1.Name = "chromiumWebBrowser1";
-            this.chromiumWebBrowser1.Size = new System.Drawing.Size(200, 100);
-            this.chromiumWebBrowser1.TabIndex = 0;
+          
             // 
             // panel1
             // 
@@ -240,7 +234,7 @@
             this.cbTextbox1.Location = new System.Drawing.Point(115, 5);
             this.cbTextbox1.Name = "cbTextbox1";
             this.cbTextbox1.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(59)))), ((int)(((byte)(74)))));
-            this.cbTextbox1.nowColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+          
             this.cbTextbox1.Padding = new System.Windows.Forms.Padding(7);
             this.cbTextbox1.Size = new System.Drawing.Size(1040, 33);
             this.cbTextbox1.TabIndex = 0;

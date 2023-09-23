@@ -317,7 +317,7 @@ namespace KitsuneBrowser
             }
             if (chromiumWebBrowser1.IsBrowserInitialized)
             {
-                if (chromiumWebBrowser1.CanGoForward)
+               /* if (chromiumWebBrowser1.CanGoForward)
                 {
                     forward.Enabled = true;
                 }
@@ -332,7 +332,7 @@ namespace KitsuneBrowser
                 else
                 {
                     back.Enabled = false;
-                }
+                }*/
             }
         }
 

@@ -10,7 +10,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NullLib.TickAnimation;
 using Win32Interop.Enums;
 using System.Reflection;
 using System.IO;
@@ -33,20 +32,12 @@ namespace KitsuneBrowser.Controls
         bool hovered;
         bool focused;
       
-        Helper.DrawingTickAnimator pnColorAnimator;
-        public Color nowColor
-        {
-            get => colorBkg; set
-            {
-                colorBkg = value;
-                
-            }
-        }
+       
         public CBTextbox()
         {
             InitializeComponent();
             colorBkg = Color.FromArgb(normalColor.ToArgb());
-            pnColorAnimator = new Helper.DrawingTickAnimator(new CubicTicker(EasingMode.EaseOut), this, nameof(nowColor));
+          
         }
         public static GraphicsPath RoundedRect(Rectangle bounds, int radius)
         {
@@ -110,8 +101,31 @@ namespace KitsuneBrowser.Controls
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaintBackground(e);
-              
+            Pen penBg = new Pen(normalColor);
 
+            if (hovered)
+            {
+
+                penBg.Color = hoverColor;
+                if (focused)
+                {
+                    penBg.Color = focusColor;
+                }
+            }
+            else
+            {
+                if (focused)
+                {
+                    penBg.Color = focusColor;
+                }
+            }
+            Graphics g = e.Graphics;
+            Brush brush = penBg.Brush;
+
+            g.FillPath(brush, RoundedRect(e.ClipRectangle, 12));
+            textBox1.BackColor = penBg.Color;
+            pictureBox1.BackColor = penBg.Color;
+        }
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
